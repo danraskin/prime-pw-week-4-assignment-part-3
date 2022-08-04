@@ -105,7 +105,7 @@ console.log('return stuff2 to shelves, expecting true: ', removeItem("stuff2", b
 console.log('short term memory loss! return stuff2 to shelves? expecting null: ', removeItem("stuff2", basket));
 console.log('*ALL* of your old items are still here, you indecisive slob: ', oldItems);
 
-function removeItem2(array, item1, item2) { //trying it out to remove *up to two items*
+function removeItem2(array, item1, item2) { //trying it out to remove *up to two items* does NOT send removed items to 'oldItems'
     item1Index = array.indexOf(item1);
     item2Index = array.indexOf(item2);
     if(item1Index >= 0 && item2Index >= 0) {
