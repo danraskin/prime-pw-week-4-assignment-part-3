@@ -73,7 +73,7 @@ console.log('wastebasket has all the old items from old basket, return true: ', 
 
 function addItem2 (item) {
     if (isFull(basket) === false) {
-        basket.push(item)
+        basket.push(item);
         return true;
     }   return false;
 }
@@ -83,4 +83,61 @@ console.log('Adding stuff (expect true)', addItem2('stuff3'));
 console.log('Adding stuff (expect true)', addItem2('stuff4'));
 console.log('Adding stuff (expect true)', addItem2('stuff5'));
 console.log('Adding stuff (expect false)', addItem2('stuff6'));
+
 console.log(basket);
+
+// 4. Create a function called `removeItem`. It should:
+//   - Take an input parameter for a string `item`
+//   - Use [Array.indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) to find the index of the first matching item in the basket.
+//   - Use [Array.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) to remove the first matching item from the basket.
+//   - Return the item removed or `null` if the item was not found
+
+function removeItem(item, array) { //ah, multiple parameters in function so function could reference any array, not just 'basket'
+   if(array.indexOf(item)>=0) {
+    oldItems.push(array[array.indexOf(item)]); //is there a way to push the output of array.splice() into newItems? array.spice returns an array, and i couldn't figure out how to use array.asString
+    array.splice(array.indexOf(item),1);
+    console.log('in removeItem(). basket is: ', array);
+    return true;
+   } return null;
+} 
+
+console.log('return stuff2 to shelves, expecting true: ', removeItem("stuff2", basket));
+console.log('short term memory loss! return stuff2 to shelves? expecting null: ', removeItem("stuff2", basket));
+console.log('*ALL* of your old items are still here, you indecisive slob: ', oldItems);
+
+function removeItem2(array, item1, item2) { //trying it out to remove *up to two items*
+    item1Index = array.indexOf(item1);
+    item2Index = array.indexOf(item2);
+    if(item1Index >= 0 && item2Index >= 0) {
+     array.splice(item1Index,1);
+     array.splice(item2Index,1);
+     console.log('in function: ', array, item1, item2);
+     return true;
+    } else if (item1Index >= 0 && (item2Index < 0 || item2Index === undefined)) {
+        array.splice(item1Index,1);
+        console.log('in function: ', array, item1, item2);
+        return true;   
+    } else if ((item1Index < 0 || item2Index === undefined) && item2Index >= 0) {
+        array.splice(item2Index,1);
+        console.log('in function: ', array, item1, item2);
+        return true;
+    }
+    console.log('in function: ', array, item1, item2);
+    return null;
+ } 
+
+console.log('expect true: ', removeItem2(basket, "stuff5","stuff3"));
+console.log('expect true: ', removeItem2(basket, "stuff1","stuff2"));
+console.log('expect true: ', removeItem2(basket, "stuff4"));
+
+console.log('Adding stuff (expect true)', addItem2('stuff1'));
+console.log('Adding stuff (expect true)', addItem2('stuff2'));
+console.log('Adding stuff (expect true)', addItem2('stuff3'));
+console.log('Adding stuff (expect true)', addItem2('stuff4'));
+console.log('Adding stuff (expect true)', addItem2('stuff5'));
+
+console.log('expect true: ', removeItem2(basket, 'stuff6','stuff4'));
+console.log('expect null: ', removeItem2(basket, 'stuff6','stuff7'));
+console.log('expect null: ', removeItem2(basket, 'stuff7'));
+
+
