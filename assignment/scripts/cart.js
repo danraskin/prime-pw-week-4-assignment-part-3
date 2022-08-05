@@ -23,7 +23,7 @@ console.log('Adding apples (expect true)', addItem('apples'));
 
 function listItems (items) {
     for (x of items) {
-        console.log(x);
+        console.log('listItems: ', x);
     }
 }
 
@@ -34,14 +34,14 @@ addItem('spittle');
 addItem('sawdust');
 
 console.log(`The items my basket are: ${basket}`);
+listItems(basket);
 
 // - Create a function called `empty`. It should:
 //   - reset the `basket` to an empty array
-console.log(basket);
 
 function empty(items) {
     for (let i = items.length-1; items.length > 0; i--) {
-        console.log(items[i]); //useful for testing;
+        console.log('in empty', items[i]); //useful for testing;
         oldItems.push(items.pop());  //this PUSHES all the POPped items into an OLD items array for storage.
         
     }
